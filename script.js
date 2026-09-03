@@ -1,4 +1,18 @@
 let products = JSON.parse(localStorage.getItem('myMenu')) || [];
+let isAdmin = false;
+
+// Admin panelini açmaq və parol yoxlamaq (Parol: 1234)
+function openAdminPanel() {
+  const password = prompt("Admin parolunu daxil edin:");
+  if (password === "1234") {
+    isAdmin = true;
+    document.getElementById("adminPanel").classList.remove("hidden");
+    alert("Giriş uğurludur!");
+    renderProducts();
+  } else {
+    alert("Yanlış parol!");
+  }
+}
 
 function renderProducts() {
   document.getElementById('ickiler').innerHTML = '';
@@ -12,7 +26,7 @@ function renderProducts() {
       <img src="${prod.image}" alt="${prod.name}">
       <h4>${prod.name}</h4>
       <p>${prod.price}</p>
-      <button class="delete-btn" onclick="deleteProduct(${index})">Sil</button>
+      ${isAdmin ? `<button class="delete-btn" onclick="deleteProduct(${index})">Sil</button>` : ''}
     `;
     
     const catContainer = document.getElementById(prod.category);

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Xoş gəlmisiniz (Hero) Hissəsi -->
+  <!-- Xoş gəlmisiniz Hissəsi -->
   <header class="hero">
     <div class="overlay">
       <h1>Restoranımıza Xoş Gəlmisiniz!</h1>
@@ -16,8 +16,8 @@
     </div>
   </header>
 
-  <!-- İdarəetmə Paneli (Məhsul Əlavə Etmə) -->
-  <section class="admin-panel">
+  <!-- İdarəetmə Paneli (Müştəriyə görünmür, gizlidir) -->
+  <section class="admin-panel hidden" id="adminPanel">
     <h3>Yeni Məhsul Əlavə Et</h3>
     <input type="text" id="pName" placeholder="Məhsul adı">
     <input type="text" id="pPrice" placeholder="Qiymət (məs: 5 AZN)">
@@ -56,7 +56,6 @@
     <p><strong>Telefon:</strong> +994 50 123 45 67</p>
     <p><strong>Ünvan:</strong> Nizami küç. 45, Bakı, Azərbaycan</p>
     
-    <!-- Xəritə (Google Maps) -->
     <div class="map-container">
       <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.522207399865!2d49.8398453!3d40.3752152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d1f1107f909%3A0x889814523277028!2sNizami%20St%2C%20Baku!5e0!3m2!1sen!2saz!4v1690000000000!5m2!1sen!2saz" 
@@ -64,6 +63,11 @@
       </iframe>
     </div>
   </footer>
+
+  <!-- Admin Girişi Düyməsi -->
+  <div style="text-align: center; margin: 20px;">
+    <button onclick="openAdminPanel()" style="background:none; border:none; color:gray; cursor:pointer;">Admin Girişi</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
