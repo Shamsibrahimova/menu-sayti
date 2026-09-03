@@ -1,25 +1,5 @@
 let products = JSON.parse(localStorage.getItem('myMenu')) || [];
 let isAdmin = false;
-let pageFlip;
-
-// Kitabı Başlatmaq
-document.addEventListener('DOMContentLoaded', () => {
-  pageFlip = new St.PageFlip(document.getElementById('myBook'), {
-    width: 350,
-    height: 500,
-    size: "fixed",
-    minWidth: 300,
-    maxWidth: 500,
-    minHeight: 400,
-    maxHeight: 700,
-    maxShadowOpacity: 0.5,
-    showCover: true,
-    mobileScrollSupport: false
-  });
-
-  pageFlip.loadFromHTML(document.querySelectorAll('.page'));
-  renderProducts();
-});
 
 function openAdminPanel() {
   const password = prompt("Admin parolunu daxil edin:");
@@ -39,20 +19,18 @@ function renderProducts() {
   document.getElementById('desertler').innerHTML = '';
 
   products.forEach((prod, index) => {
-    const item = document.createElement('div');
-    item.className = 'item-card';
-    item.innerHTML = `
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
       <img src="${prod.image}" alt="${prod.name}">
-      <div class="item-info">
-        <h4>${prod.name}</h4>
-        <p>${prod.price}</p>
-      </div>
+      <h4>${prod.name}</h4>
+      <p>${prod.price}</p>
       ${isAdmin ? `<button class="delete-btn" onclick="deleteProduct(${index})">Sil</button>` : ''}
     `;
     
     const catContainer = document.getElementById(prod.category);
     if (catContainer) {
-      catContainer.appendChild(item);
+      catContainer.appendChild(card);
     }
   });
 }
@@ -74,7 +52,6 @@ function addProduct() {
     products.push(newProduct);
     localStorage.setItem('myMenu', JSON.stringify(products));
     renderProducts();
-    alert('Məhsul əlavə edildi!');
   };
   reader.readAsDataURL(imageInput.files[0]);
 }
@@ -84,3 +61,5 @@ function deleteProduct(index) {
   localStorage.setItem('myMenu', JSON.stringify(products));
   renderProducts();
 }
+
+renderProducts();
